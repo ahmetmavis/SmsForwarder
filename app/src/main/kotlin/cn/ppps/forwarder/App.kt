@@ -49,6 +49,7 @@ import cn.ppps.forwarder.utils.ProximitySensorScreenHelper
 import cn.ppps.forwarder.utils.SettingUtils
 import cn.ppps.forwarder.utils.SharedPreference
 import cn.ppps.forwarder.utils.sdkinit.XBasicLibInit
+import cn.ppps.forwarder.utils.sdkinit.XUpdateInit
 import cn.ppps.forwarder.utils.tinker.TinkerLoadLibrary
 import com.gyf.cactus.Cactus
 import com.gyf.cactus.callback.CactusCallback
@@ -333,7 +334,9 @@ class App : Application(), CactusCallback, Configuration.Provider by Core {
         Log.init(applicationContext)
         // 转发历史工具类初始化
         HistoryUtils.init(applicationContext)
-        // 版本更新 + 友盟统计: Mavis forkunda kaldırıldı (telemetri/güncelleme çağrısı yok)
+        // 版本更新框架初始化 (framework kurulumu — ağ çağrısı yapmaz; otomatik kontrol
+        // MainActivity'de kapatıldı). 友盟统计 (Umeng) Mavis forkunda tamamen kaldırıldı.
+        XUpdateInit.init(this)
         // 初始化语种切换框架
         MultiLanguages.init(this)
         // 设置语种变化监听器
